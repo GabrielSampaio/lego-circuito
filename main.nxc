@@ -1,0 +1,30 @@
+#define luz 50
+int flag=0;
+task main()
+{
+   SetSensorLight(IN_1);      //Sensor da direita
+   SetSensorLight(IN_4);      //Sensor da esquerda
+
+   while(true)
+   {
+          OnFwd(OUT_AC, 64);
+        if(Sensor(IN_1)<luz)
+        {
+           Off(OUT_AC);
+           while(Sensor(IN_1)<luz)  // sensor da direita no preto
+           {
+              OnFwd(OUT_C,90);
+              OnRev(OUT_A,90);
+           }
+        }
+        if(Sensor(IN_4)<luz)
+        {
+           Off(OUT_AC);
+           while(Sensor(IN_4)<luz)  //sensor da esquerda no preto
+           {
+              OnFwd(OUT_A,90);
+              OnRev(OUT_C,90);
+           }
+        }
+   }//fechamento do loop infinito
+}  // fecha a main
